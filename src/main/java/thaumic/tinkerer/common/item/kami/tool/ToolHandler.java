@@ -105,7 +105,10 @@ public final class ToolHandler {
         EntityPlayerMP player = (EntityPlayerMP) playerEntity;
         Block block = world.getBlock(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
-        
+
+        if (block == Blocks.bedrock && world.provider.dimensionId != ConfigHandler.bedrockDimensionID)
+            return;
+
      // only effective materials
         if (!block.canHarvestBlock(player, meta) || !isRightMaterial(block.getMaterial(), materialsListing))
             return;
